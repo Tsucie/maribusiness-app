@@ -1,0 +1,110 @@
+{
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "endpoint = 'http://630317bb-4577-4216-82a1-5e4fe48d92db.southeastasia.azurecontainer.io/score'\n",
+        "key = 'LHnJg8Z8wdiyboSs38cXXz7w9nbgWCx2'\n",
+        "\n",
+        "import urllib.request\n",
+        "import urllib.error\n",
+        "import json\n",
+        "import os\n",
+        "\n",
+        "data = {\n",
+        "    \"Inputs\": {\n",
+        "        \"WebServiceInput0\": [\n",
+        "            {\n",
+        "                \"id\": 2525363215,\n",
+        "                \"date\": \"20201013T000000\",\n",
+        "                \"price\": 356300,\n",
+        "                \"bedrooms\": 3,\n",
+        "                \"bathrooms\": 1,\n",
+        "                \"sqft_living\": 1180,\n",
+        "                \"sqft_lot\": 5650,\n",
+        "                \"floors\": 1,\n",
+        "                \"waterfront\": 0,\n",
+        "                \"view\": 0,\n",
+        "                \"condition\": 3,\n",
+        "                \"grade\": 7,\n",
+        "                \"sqft_above\": 1180,\n",
+        "                \"sqft_basement\": 0,\n",
+        "                \"yr_built\": 1955,\n",
+        "                \"yr_renovated\": 0,\n",
+        "                \"zipcode\": 98178,\n",
+        "                \"lat\": 475.11199999999997,\n",
+        "                \"long\": -122.257,\n",
+        "                \"sqft_living15\": 1340,\n",
+        "                \"sqft_lot15\": 5650\n",
+        "            }\n",
+        "        ]\n",
+        "    },\n",
+        "    \"GlobalParameters\": {}\n",
+        "}\n",
+        "body = str.encode(json.dumps(data))\n",
+        "headers = {\n",
+        "    'Content-Type':'application/json',\n",
+        "    'Authorization':('Bearer '+ key)\n",
+        "    }\n",
+        "req = urllib.request.Request(endpoint, body, headers)\n",
+        "\n",
+        "try:\n",
+        "    response = urllib.request.urlopen(req)\n",
+        "    result = response.read()\n",
+        "    json_rslt = json.loads(result)\n",
+        "    data = json_rslt[\"Result\"][\"WebServiceOutput0\"][0]\n",
+        "    print(data)\n",
+        "\n",
+        "except urllib.error.HTTPError as error :\n",
+        "    print(\"Request gagal dengan kode status: \" + str(error.code))\n",
+        "    print(error.info())\n",
+        "    print(json.loads(error.read().decode(\"utf8\", 'ignore')))"
+      ],
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "KeyError",
+          "evalue": "'Result'",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mKeyError\u001b[0m                                  Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-1-2f802ac732de>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m     48\u001b[0m     \u001b[0mresult\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mresponse\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     49\u001b[0m     \u001b[0mjson_rslt\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mjson\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mloads\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mresult\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 50\u001b[0;31m     \u001b[0mdata\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mjson_rslt\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"Result\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"WebServiceOutput0\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m0\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     51\u001b[0m     \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     52\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mKeyError\u001b[0m: 'Result'"
+          ]
+        }
+      ],
+      "execution_count": 1,
+      "metadata": {}
+    }
+  ],
+  "metadata": {
+    "interpreter": {
+      "hash": "31f2aee4e71d21fbe5cf8b01ff0e069b9275f58929596ceb00d14d90e3e16cd6"
+    },
+    "kernel_info": {
+      "name": "python3-azureml"
+    },
+    "kernelspec": {
+      "name": "python3-azureml",
+      "language": "python",
+      "display_name": "Python 3.6 - AzureML"
+    },
+    "language_info": {
+      "name": "python",
+      "version": "3.6.9",
+      "mimetype": "text/x-python",
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "pygments_lexer": "ipython3",
+      "nbconvert_exporter": "python",
+      "file_extension": ".py"
+    },
+    "nteract": {
+      "version": "nteract-front-end@1.0.0"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 2
+}
