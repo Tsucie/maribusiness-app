@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+Dataset/Scored_dataset_source.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
