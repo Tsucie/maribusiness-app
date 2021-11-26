@@ -1,2 +1,12 @@
-# maribusiness-app
-MariBisnis wants to know the business trend of selling homes in America Union. The hope is that MariBisnis will be able to predict the price of a house and mapping the distribution of existing data.
+# Power BI Dashboard
+
+<img src="Dokumentasi/Report Power BI/Dashboard1.png" />
+<img src="Dokumentasi/Report Power BI/Dashboard2.png" />
+<img src="Dokumentasi/Report Power BI/Dashboard3.png" />
+
+# Azure ML Pipeline Models
+## Training Pipeline
+<img src="Dokumentasi/Regression Model/TrainingPipeline.png" />
+
+## Real-time Inference Pipeline
+<img src="Dokumentasi/Regression Model/Real-timeInferencePipeline.png" />
